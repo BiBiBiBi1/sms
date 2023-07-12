@@ -9,12 +9,16 @@ import (
 	"github.com/joho/godotenv"
 )
 
+type client struct {
+	Username string
+	Password string
+}
+
 var (
 	accountSid string
 	authToken  string
 	fromPhone  string
 	toPhone    string
-	client     string
 )
 
 func connect() {
@@ -55,14 +59,14 @@ func init() {
 	fromPhone = os.Getenv("FROM_PHONE")
 	toPhone = os.Getenv("TO_PHONE")
 
-	// client = user.NewRestClientWithParams(user.RestClientParams{
-	// 	Username: accountSid,
-	// 	Password: authToken,
-	// })
-
+	// создать структуру cleint, с данными user name & password.
 }
 
 func main() {
+
+	emp := []client{}
+	emp = append(emp, client{Username: accountSid, Password: authToken})
+	fmt.Printf("name is: %s\n")
 
 	msg := fmt.Sprintf(os.Getenv("MSG"), "Dima")
 	SendMessage(msg)
